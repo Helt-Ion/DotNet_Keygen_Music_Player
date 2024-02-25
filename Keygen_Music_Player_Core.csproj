@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>True</UseWindowsForms>
+    <BaseOutputPath>bin\$(MSBuildProjectName)</BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DeployDirectory>DLL</DeployDirectory>
+    <RunDirectory>$(DeployDirectory)\$(MSBuildProjectName)</RunDirectory>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <RemoveDir Directories="$(RunDirectory)" />
+    <MakeDir Directories="$(RunDirectory)" />
+      <ItemGroup>
+        <MySourceFiles Include="$(OutDir)**\*.dll" />
+      </ItemGroup>
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(RunDirectory)\%(RecursiveDir)" />
+  </Target>
+
+  <ItemGroup>
+    <Compile Remove="form\**" />
+    <Compile Remove="Properties\**" />
+    <EmbeddedResource Remove="form\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <None Remove="form\**" />
+    <None Remove="Properties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="src\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="src\Keygen_Music_Player_Core\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="App.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NAudio.Core">
+      <HintPath>lib\NAudio.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpMik">
+      <HintPath>lib\SharpMik.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

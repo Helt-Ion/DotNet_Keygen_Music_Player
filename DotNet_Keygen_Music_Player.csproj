@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>True</UseWindowsForms>
+    <BaseOutputPath>bin\$(MSBuildProjectName)</BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ModelDirectory>models</ModelDirectory>
+    <DeployDirectory>run</DeployDirectory>
+    <RunDirectory>$(DeployDirectory)\$(MSBuildProjectName)</RunDirectory>
+    <ApplicationIcon>ico\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <RemoveDir Directories="$(RunDirectory)" />
+    <MakeDir Directories="$(RunDirectory)" />
+      <ItemGroup>
+        <MySourceFiles Include="$(OutDir)**\*.*" />
+        <MySourceFiles Include="$(ModelDirectory)\**\*.*" />
+      </ItemGroup>
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(RunDirectory)\%(RecursiveDir)" />
+  </Target>
+
+  <ItemGroup>
+      <Compile Remove="src\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <Compile Include="src\DotNet_Keygen_Music_Player\**\*.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ico\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Keygen_Music_Player_Core">
+      <HintPath>DLL\Keygen_Music_Player_Core\Keygen_Music_Player_Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Core">
+      <HintPath>DLL\Keygen_Music_Player_Core\NAudio.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpMik">
+      <HintPath>DLL\Keygen_Music_Player_Core\SharpMik.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

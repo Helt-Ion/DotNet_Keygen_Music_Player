@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Run": {
+      "commandName": "Project",
+      "workingDirectory": "$(RunDirectory)"
+    },
+    "Run_Arguments": {
+      "commandName": "Project",
+      "commandLineArgs": "\"music\\chip1299.xm\"",
+      "workingDirectory": "$(RunDirectory)"
+    }
+  }
+}
