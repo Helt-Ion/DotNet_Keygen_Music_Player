@@ -5,11 +5,9 @@
 		[STAThread]
 		static void Main(string[] args)
 		{
-			Utils.HideConsolebySetting();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Form_DotNet_Keygen_Music_Player().Init(args));
-			Utils.ShowConsole();
 		}
 	}
 }
