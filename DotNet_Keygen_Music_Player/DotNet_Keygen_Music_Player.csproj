@@ -27,26 +27,18 @@
   </Target>
 
   <ItemGroup>
-      <Compile Remove="src\**\*.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-      <Compile Include="src\DotNet_Keygen_Music_Player\**\*.*" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="ico\icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Keygen_Music_Player_Core">
-      <HintPath>DLL\Keygen_Music_Player_Core\Keygen_Music_Player_Core.dll</HintPath>
+      <HintPath>lib\Keygen_Music_Player_Core.dll</HintPath>
     </Reference>
     <Reference Include="NAudio.Core">
-      <HintPath>DLL\Keygen_Music_Player_Core\NAudio.Core.dll</HintPath>
+      <HintPath>lib\NAudio.Core.dll</HintPath>
     </Reference>
     <Reference Include="SharpMik">
-      <HintPath>DLL\Keygen_Music_Player_Core\SharpMik.dll</HintPath>
+      <HintPath>lib\SharpMik.dll</HintPath>
     </Reference>
   </ItemGroup>
     

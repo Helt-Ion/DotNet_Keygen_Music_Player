@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DeployDirectory>DLL</DeployDirectory>
-    <RunDirectory>$(DeployDirectory)\$(MSBuildProjectName)</RunDirectory>
+    <DeployDirectory>..\DotNet_Keygen_Music_Player\lib</DeployDirectory>
+    <RunDirectory>$(DeployDirectory)</RunDirectory>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -22,27 +22,6 @@
       </ItemGroup>
     <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(RunDirectory)\%(RecursiveDir)" />
   </Target>
-
-  <ItemGroup>
-    <Compile Remove="form\**" />
-    <Compile Remove="Properties\**" />
-    <EmbeddedResource Remove="form\**" />
-    <EmbeddedResource Remove="Properties\**" />
-    <None Remove="form\**" />
-    <None Remove="Properties\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="src\**\*.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="src\Keygen_Music_Player_Core\**\*.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="App.config" />
-  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="NAudio.Core">

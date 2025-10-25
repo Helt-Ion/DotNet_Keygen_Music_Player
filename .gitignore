@@ -396,16 +396,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-
-# Running Directory
-run/
-
-# DLL Directory
-DLL/
-
-# Executables in models Directory
-models/runtime/**/*.exe
-
-# Musics in models Directory
-models/music/**/*.*
-!models/music/**/*.txt

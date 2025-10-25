@@ -1,0 +1,12 @@
+# Running Directory
+run/
+
+# DLL Directory
+lib/
+
+# Executables in models Directory
+models/runtime/**/*.exe
+
+# Musics in models Directory
+models/music/**/*.*
+!models/music/**/*.txt
